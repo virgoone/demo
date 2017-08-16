@@ -1,0 +1,135 @@
+  @import '~style/helpers';
+   :local {
+  	@keyframes msgBounceIn {
+  		from,
+  		to {
+  			animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1)
+  		}
+  		from {
+  			transform: scale(0)
+  		}
+  		40% {
+  			transform: scale(1.03)
+  		}
+  		75% {
+  			transform: scale(0.98)
+  		}
+  		to {
+  			transform: scale(1)
+  		}
+  	}
+  	.msg {
+  		display: flex;
+  		max-width: 85%;
+  		@include font-dpr(14px);
+  		transform: translate3d(0, 0, 0);
+  		color: #2f2f2f;
+  		.avatar-box {
+  			width: 0.70rem;
+  			height: 0.70rem;
+  			position: relative;
+  			.avatar {
+  				@include img-cover-low();
+  			}
+  		}
+  		.msg_content {
+  			width: 100%;
+  			flex: 1;
+  			.bubble {
+  				display: inline-block;
+  				vertical-align: top;
+  				position: relative;
+  				text-align: left;
+  				margin: 0 0.15rem;
+  				min-height: .1rem;
+  				max-width: 100%;
+  			}
+  			.bubble_cont {
+  				word-wrap: break-word;
+  				word-break: break-all;
+  				min-height: 0.20rem;
+  				font-weight: 400;
+  			}
+  			.text {
+  				padding: 0.1rem 0.16rem;
+  				background-color: #fff;
+  				line-height: 0.5rem;
+  				letter-spacing: 0.01rem;
+  				border-radius: 0.05rem;
+  				animation: msgBounceIn .4s;
+  				&:after,
+  				&:before {
+  					position: absolute;
+  					top: 0.11rem;
+  					border: 0.08rem solid rgba(0, 0, 0, 0);
+  					content: " ";
+  					z-index: 3;
+  				}
+  				&.left {
+  					transform-origin: 0 0;
+  					&:after,
+  					&:before {
+  						right: 100%;
+  					}
+  					&:after {
+  						border-right-color: #fff;
+  						border-right-width: 0.08rem;
+  					}
+  				}
+  				&.right {
+  					background-color: #b2e281;
+  					transform-origin: 100% 100%;
+  					&:before,
+  					&:after {
+  						left: 100%;
+  					}
+  					&:after {
+  						border-left-color: #b2e281;
+  						border-left-width: 0.08rem;
+  					}
+  				}
+  			}
+  			.bubble_img {
+  				max-width: 100%;
+  				border-radius: 0.05rem;
+  			}
+  			.media {
+  				.bubble_cont {
+  					border-radius: 0.05rem;
+  					overflow: hidden;
+  				}
+  			}
+  		}
+  		.video_box {
+  			width: 100%;
+  			position: relative;
+  			overflow: hidden;
+  			.play_btn {
+  				cursor: pointer;
+  				@include position_fill();
+  				background-image: url('/assets/play-btn.png');
+  				background-position: center;
+  				background-size: 1rem;
+  				z-index: 3;
+  				background-repeat: no-repeat;
+  				transition: all ease-in-out .35s;
+  			}
+  			.bubble_video {
+  				max-width: 100%;
+  				width: 5rem;
+  				background: #000;
+  				object-fit: contain;
+  			}
+  			&.playing {
+  				.play_btn {
+  					opacity: 0;
+  				}
+  			}
+  		}
+  		&.right {
+  			float: right;
+  			flex-direction: row-reverse;
+  			overflow: hidden;
+  		}
+  	}
+  }

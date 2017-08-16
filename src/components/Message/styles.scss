@@ -1,0 +1,7 @@
+	@import '~style/helpers';
+	:local {
+		.message-root {
+      margin-bottom: 0.35rem;
+      @include clearfix();
+		}
+	}
