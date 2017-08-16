@@ -181,8 +181,8 @@ export default class Home extends Component {
 		const { messages } = this.state;
 		messages.push(msg);
 		this.setState({ messages }, () => {
+			music.start && music.start();
 			this.updateScroll();
-			music && music.start();
 		});
 		return Promise.resolve();
 	}

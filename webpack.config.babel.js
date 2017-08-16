@@ -16,6 +16,8 @@ const ENV = process.env.NODE_ENV || 'development';
 const initConfig = {
 	'production': {
 		version,
+		outputPath: path.resolve(__dirname, 'docs'),
+		publicUrl: '/',
 	},
 }[ENV] || {
 	debug: true,
@@ -28,14 +30,15 @@ Object.assign(initConfig, {
 	name,
 });
 
-const CSS_MAPS = false;
-
+const CSS_MAPS = ENV === 'production';
+const outputPath = initConfig.outputPath;
+delete initConfig.outputPath;
 module.exports = {
 	context: path.resolve(__dirname, 'src'),
 	entry: './index.js',
 
 	output: {
-		path: path.resolve(__dirname, 'build'),
+		path: path.resolve(outputPath),
 		publicPath: '/',
 		filename: 'bundle.js',
 		chunkFilename: '[name].[chunkhash].chunk.js',

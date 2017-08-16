@@ -6,7 +6,7 @@ const AudioContext =
 	window.msAudioContext;
 
 export const hasWebAudioAPI = {
-	data: Boolean(AudioContext) && location.protocol.indexOf('http') !== -1,
+	data: Boolean(AudioContext),
 };
 export const music = {};
 (() => {
@@ -41,6 +41,6 @@ export const music = {};
 				}
 			}
 		);
-  };
-  req.send();
+	};
+	req.send();
 })();
